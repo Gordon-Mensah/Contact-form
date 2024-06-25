@@ -1,1 +1,3 @@
-# Contact-form
+**Interactive Contact Form**
+
+This repository contains a responsive and accessible contact form built using HTML, CSS, and JavaScript. The form features input validation, radio button selections for query type, and a checkbox for consent, ensuring data integrity and user-friendly interaction. Designed with a clean and modern aesthetic, the form adapts smoothly from mobile to desktop screens, leveraging CSS flexbox for layout consistency. Whether you're looking to integrate a contact form into your website or explore front-end development techniques, this project serves as a practical showcase of HTML forms and CSS styling, accompanied by JavaScript for form validation and submission handling.
