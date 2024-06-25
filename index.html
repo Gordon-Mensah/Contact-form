@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | Contact form</title>
+
+  <style>
+    body {
+      font-family: 'Karla', sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: hsl(148, 38%, 91%);
+    }
+    form {
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+      background: hsl(0, 0%, 100%);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-field {
+      margin-bottom: 15px; /* increased margin bottom for better separation */
+    }
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px; /* increased gap between fields */
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: hsl(187, 24%, 22%);
+    }
+    label.required::after {
+      content: ' *';
+      color: hsl(0, 66%, 54%);
+    }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%; /* full width */
+      padding: 8px;
+      border: 1px solid hsl(186, 15%, 59%);
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .radio-group-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px; /* increased gap between radio groups */
+    }
+    .radio-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid hsl(186, 15%, 59%);
+      border-radius: 4px;
+      padding: 8px;
+    }
+    .radio-option {
+      margin-bottom: 10px; /* increased margin bottom for better separation */
+    }
+    .radio-option:last-child {
+      margin-bottom: 0;
+    }
+    .error-message {
+      color: hsl(0, 66%, 54%);
+      font-size: 12px;
+      display: none;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: hsl(169, 82%, 27%);
+      color: hsl(0, 0%, 100%);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 15px; /* increased margin top */
+    }
+    button:hover {
+      background-color: hsl(169, 82%, 35%);
+    }
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 20px;
+      color: hsl(187, 24%, 22%);
+    }
+    .attribution a {
+      color: hsl(169, 82%, 27%);
+    }
+    .success-message {
+      display: none;
+      color: green;
+      text-align: center;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* increased gap between checkbox and label */
+      margin-bottom: 10px; /* increased margin bottom */
+    }
+    .checkbox-container input {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact Us</h1>
+
+  <form id="contactForm">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="firstName" class="required">First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <div class="error-message">This field is required</div>
+      </div>
+      <div class="form-field">
+        <label for="lastName" class="required">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <div class="error-message">This field is required</div>
+      </div>
+    </div>
+    <div class="form-field">
+      <label for="email" class="required">Email Address</label>
+      <input type="email" id="email" name="email" required>
+      <div class="error-message">Please enter a valid email address</div>
+    </div>
+    <div class="form-field">
+      <label class="required">Query Type</label>
+      <div class="radio-group-container">
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="general" name="queryType" value="general" required>
+            <label for="general">General Enquiry</label>
+          </div>
+        </div>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="support" name="queryType" value="support" required>
+            <label for="support">Support Request</label>
+          </div>
+        </div>
+      </div>
+      <div class="error-message">Please select a query type</div>
+    </div>
+    <div class="form-field">
+      <label for="message" class="required">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      <div class="error-message">This field is required</div>
+    </div>
+    <div class="form-field">
+      <div class="checkbox-container">
+        <input type="checkbox" id="consent" name="consent" required>
+        <label for="consent">I consent to being contacted by the team</label>
+      </div>
+      <div class="error-message">To submit this form, please consent to being contacted</div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div class="success-message" id="successMessage">
+    Message Sent! Thanks for completing the form. We'll be in touch soon!
+  </div>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">John Jerry Gordon-Mensah</a>.
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      let isValid = true;
+      const fields = document.querySelectorAll('#contactForm .form-field');
+      fields.forEach(field => {
+        const input = field.querySelector('input, textarea');
+        const errorMessage = field.querySelector('.error-message');
+        
+        if (!input.checkValidity()) {
+          isValid = false;
+          errorMessage.style.display = 'block';
+        } else {
+          errorMessage.style.display = 'none';
+        }
+      });
+
+      const queryTypeFields = document.querySelectorAll('input[name="queryType"]');
+      let queryTypeValid = false;
+      queryTypeFields.forEach(field => {
+        if (field.checked) {
+          queryTypeValid = true;
+        }
+      });
+      if (!queryTypeValid) {
+        document.querySelector('.form-field .error-message').style.display = 'block';
+        isValid = false;
+      } else {
+        document.querySelector('.form-field .error-message').style.display = 'none';
+      }
+
+      if (isValid) {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
